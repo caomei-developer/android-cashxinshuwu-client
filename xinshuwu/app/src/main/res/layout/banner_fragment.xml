@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.xinshuwu.widget.AutoImageSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ml="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/image_switcher"
+    android:layout_marginBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    ml:auto_switch="true"
+    ml:ratios="2.5">
+
+    <com.xinshuwu.widget.compoment.pager.DotPageIndicator
+        android:id="@+id/dotPageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ml:space="6dp"
+        android:layout_marginBottom="10dp"
+        ml:normalDrawable="@mipmap/dot_page_indicator_normal_image"
+        ml:selectedDrawable="@mipmap/dot_page_indicator_selected_image"
+        android:gravity="center" />
+</com.xinshuwu.widget.AutoImageSwitcher>
