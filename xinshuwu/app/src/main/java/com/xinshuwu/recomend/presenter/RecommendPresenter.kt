@@ -15,7 +15,7 @@ class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendCon
 
 
     override fun RecommendsPresenter(
-        timestamp: String,
+        timestamp: Long,
         sign: String,
         page: String,
         uID: String,

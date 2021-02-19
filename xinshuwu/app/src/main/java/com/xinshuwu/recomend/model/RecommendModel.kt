@@ -1,6 +1,7 @@
 package com.xinshuwu.recomend.model
 
 import com.xinshuwu.XswApplication
+import com.xinshuwu.net.APIConstant
 import com.xinshuwu.net.HttpUtil
 import com.xinshuwu.net.Response
 import com.xinshuwu.recomend.bean.Recommends
@@ -10,7 +11,7 @@ import io.reactivex.rxjava3.core.Observable
 
 class RecommendModel : RecommendContract.RecommendModel {
     override fun RecommendResponse(
-        timestamp: String,
+        timestamp: Long,
         sign: String,
         page: String,
         uID: String,
@@ -22,6 +23,7 @@ class RecommendModel : RecommendContract.RecommendModel {
     ): Observable<Response<Recommends>> {
         return HttpUtil().apiFzConstant()
             .recommends(
+                APIConstant().APP_ANDROID,
                 timestamp,
                 sign,
                 page,
@@ -31,8 +33,8 @@ class RecommendModel : RecommendContract.RecommendModel {
                 province,
                 city,
                 isWifi,
-                DeviceUtil.getModel(),
-                "WANDOUJIA", DeviceUtil.getImei(XswApplication.context),
+                DeviceUtil.getPhoneName(),
+                "WANDOUJIA", DeviceUtil.getImei(XswApplication.instance()),
                 DeviceUtil.getAndroidId(XswApplication.context)
             )
     }

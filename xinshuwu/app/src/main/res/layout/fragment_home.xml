@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         app:tabMode="scrollable"
         app:tabIndicatorHeight="3dp"
-        app:indicatorStartColor="#d6694e"
+        app:indicatorStartColor="@color/main"
         app:indicatorEndColor="#e73820"
         app:indicatorMarginStart="20dp"
         app:indicatorMarginEnd="20dp"

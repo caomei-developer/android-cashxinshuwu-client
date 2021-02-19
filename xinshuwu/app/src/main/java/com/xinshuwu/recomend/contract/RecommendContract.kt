@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Observable
 class RecommendContract {
     interface RecommendModel {
         fun RecommendResponse(
-            timestamp: String,
+            timestamp: Long,
             sign: String,
             page: String,
             uID: String,
@@ -27,7 +27,7 @@ class RecommendContract {
 
     interface Presenter {
         fun RecommendsPresenter(
-            timestamp: String,
+            timestamp: Long,
             sign: String,
             page: String,
             uID: String,

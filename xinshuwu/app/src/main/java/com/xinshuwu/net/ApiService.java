@@ -26,9 +26,7 @@ public interface ApiService {
     Observable<Response<List<BannerInfos>>> banners();
 
     @GET("app/home/elitebook")
-    Observable<Response<Recommends>> recommends(@Query("timestamp") String timestamp,@Query("sign") String sign,@Query("page") String page,
-                                                @Query("uID")String uID,@Query("token")String token,@Query("country")String country,
-                                                @Query("province")String province,@Query("city") String city,@Query("isWifi") String isWifi,
-                                                @Query("mType") String paramString10, @Query("PACKINGCHANNEL") String paramString11, @Query("imei") String paramString12, @Query("androidID") String paramString13);
+    Observable<Response<Recommends>> recommends(@Query("consumerKey") String paramString1, @Query("timestamp") long paramLong, @Query("sign") String paramString2, @Query("page") String paramString3, @Query("uID") String paramString4, @Query("token") String paramString5, @Query("country") String paramString6, @Query("province") String paramString7, @Query("city") String paramString8, @Query("isWifi") String paramString9, @Query("mType") String paramString10, @Query("PACKINGCHANNEL") String paramString11, @Query("imei") String paramString12, @Query("androidID") String paramString13);
+
 
 }

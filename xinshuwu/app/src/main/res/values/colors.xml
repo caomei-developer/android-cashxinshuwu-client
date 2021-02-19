@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="main">#FF4A4A</color>
     <color name="white">#ffffffff</color>
+    <color name="ash2">#222222</color>
+    <color name="ash6">#666666</color>
+    <color name="grey_line">#b4b4b4</color>
 </resources>

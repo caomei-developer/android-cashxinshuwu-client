@@ -4,17 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.xinshuwu.R
 import com.xinshuwu.base.BaseMvpfragment
 import com.xinshuwu.net.APIConstant
+import com.xinshuwu.recomend.adapter.RecommendsAdapter
 import com.xinshuwu.recomend.bean.LMLIST
 import com.xinshuwu.recomend.contract.RecommendContract
 import com.xinshuwu.recomend.presenter.RecommendPresenter
 import com.xinshuwu.util.SignatureUtil
+import kotlinx.android.synthetic.main.recommend_fragment.*
 
 
 class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPresenter>(),
     RecommendContract.View {
+    var recommendsAdapter: RecommendsAdapter? = null
+
+
     fun newInstance(): RecommendFragment {
 
         val args = Bundle()
@@ -38,14 +44,16 @@ class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPrese
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recommendsAdapter = RecommendsAdapter()
+        recycler_view.layoutManager = LinearLayoutManager(activity)
         mPresenter = RecommendPresenter()
         mPresenter!!.attachView(this)
         parameters()
     }
 
 
-    fun parameters() {
-        val timestamp = System.currentTimeMillis()
+    private fun parameters() {
+        val timestamp = java.lang.Long.valueOf(System.currentTimeMillis())
 
         val param = SignatureUtil().elitebook(
             APIConstant().APP_ANDROID,
@@ -57,7 +65,7 @@ class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPrese
         )
 
         mPresenter!!.RecommendsPresenter(
-            timestamp.toString(), param, APIConstant().FU_JING_XUAN, APIConstant().UID, "0",
+            timestamp, param, APIConstant().FU_JING_XUAN, APIConstant().UID, "0",
             "", "", "", "0"
         )
     }
@@ -72,8 +80,20 @@ class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPrese
     }
 
     override fun onSuccess(lmlist: List<LMLIST>) {
+        recommendsAdapter!!.setData(list(lmlist))
+
+        recycler_view.adapter = recommendsAdapter
+    }
 
 
+    fun list(lmlist: List<LMLIST>): List<LMLIST> {
+        var newListf: MutableList<LMLIST> = ArrayList()
+        lmlist.forEach {
+            if (it.BOOKS != null && it.BOOKS.isNotEmpty()) {
+                newListf.add(it)
+            }
+        }
+        return newListf
     }
 
 }

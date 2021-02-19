@@ -3,7 +3,6 @@
   <component name="EclipseCodeFormatterProjectSettings">
     <option name="selectedGlobalProfile">
       <Settings>
-        <option name="formatter" value="ECLIPSE" />
         <option name="id" value="1513933085882" />
         <option name="importOrderConfigFilePath" value="$USER_HOME$/android-config/android-eclipse-formatter.xml" />
         <option name="importOrderFromFile" value="true" />

@@ -11,7 +11,7 @@ class RxScheduler {
         return ObservableTransformer { upstream ->
             upstream!!.flatMap { t ->
                 val response = t as Response<T>
-                if (response.code > 0) {
+                if (response.code > 0 || response.RETCODE == 200) {
                     createData(t)
                 } else {
                     Observable.error<T>(Exception(response.msg))

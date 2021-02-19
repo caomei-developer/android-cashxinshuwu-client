@@ -1,11 +1,16 @@
 package com.xinshuwu
 
+import android.Manifest
 import android.os.Bundle
+import com.tbruyelle.rxpermissions2.Permission
+import com.tbruyelle.rxpermissions2.RxPermissions
 import com.xinshuwu.base.TabActivity
 import com.xinshuwu.ui.dashboard.DashboardFragment
 import com.xinshuwu.ui.home.HomeFragment
 import com.xinshuwu.ui.notifications.NotificationsFragment
 import com.xinshuwu.util.CompatUtil
+import io.reactivex.rxjava3.functions.Consumer
+
 
 class MainActivity : TabActivity() {
     private val tabItemList: MutableList<TabItem> = arrayListOf()
@@ -20,6 +25,19 @@ class MainActivity : TabActivity() {
         super.onCreate(savedInstanceState)
         initTabBar()
         initViewPager()
+
+        checkPermissions()
+    }
+
+    private fun checkPermissions() {
+        RxPermissions(this).requestEach(
+            Manifest.permission.READ_PHONE_STATE
+        ).subscribe {
+            Consumer<Permission> { t ->
+                if (t.granted) {
+                }
+            }
+        }
     }
 
     private fun initViewPager() {
