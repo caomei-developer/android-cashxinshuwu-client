@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xinshuwu.R
-import com.xinshuwu.base.BaseMvpfragment
+import com.xinshuwu.base.BaseMvpFragment
 import com.xinshuwu.net.APIConstant
 import com.xinshuwu.recomend.adapter.RecommendsAdapter
 import com.xinshuwu.recomend.bean.LMLIST
@@ -16,9 +16,9 @@ import com.xinshuwu.util.SignatureUtil
 import kotlinx.android.synthetic.main.recommend_fragment.*
 
 
-class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPresenter>(),
+class RecommendFragment : BaseMvpFragment<RecommendContract.View, RecommendPresenter>(),
     RecommendContract.View {
-    var recommendsAdapter: RecommendsAdapter? = null
+    private var recommendsAdapter: RecommendsAdapter? = null
 
 
     fun newInstance(): RecommendFragment {
@@ -45,7 +45,7 @@ class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPrese
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recommendsAdapter = RecommendsAdapter()
-        recycler_view.layoutManager = LinearLayoutManager(activity)
+        recycler_view.setLayoutManager(LinearLayoutManager(activity))
         mPresenter = RecommendPresenter()
         mPresenter!!.attachView(this)
         parameters()
@@ -95,5 +95,6 @@ class RecommendFragment : BaseMvpfragment<RecommendContract.View, RecommendPrese
         }
         return newListf
     }
+
 
 }

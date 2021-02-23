@@ -2,6 +2,8 @@ package com.xinshuwu.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.RelativeLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.xinshuwu.R;
 import com.xinshuwu.XswApplication;
 import com.xinshuwu.util.DeviceUtil;
@@ -145,19 +149,26 @@ public class AutoImageSwitcher extends RelativeLayout implements View.OnClickLis
             String imageUrl = imageUrls.get(imageUrls.size() - 1);
             ImageView imageView = selectOneImageView();
             imageView.setTag(imageUrls.size() - 1);
-            Picasso.with(getContext()).load(imageUrl).into(imageView);
+
+            RoundedCorners roundedCorners = new RoundedCorners(10);
+            RequestOptions options = RequestOptions.bitmapTransform(roundedCorners)
+                    .placeholder(new ColorDrawable(Color.GRAY));//设置占位图
+            Glide.with(getContext()).load(imageUrl).apply(options)
+                    .into(imageView);
             mViews.add(imageView);
             if (imageUrls.size() > 1) {
                 for (int i = 0; i < imageUrls.size(); i++) {
                     imageUrl = imageUrls.get(i);
                     imageView = selectOneImageView();
                     imageView.setTag(i);
-                    Picasso.with(getContext()).load(imageUrl).into(imageView);
+                    Glide.with(getContext()).load(imageUrl).apply(options)
+                            .into(imageView);
                     mViews.add(imageView);
                 }
                 imageUrl = imageUrls.get(0);
                 imageView = selectOneImageView();
-                Picasso.with(getContext()).load(imageUrl).into(imageView);
+                Glide.with(getContext()).load(imageUrl).apply(options)
+                        .into(imageView);
                 mViews.add(imageView);
             }
         }

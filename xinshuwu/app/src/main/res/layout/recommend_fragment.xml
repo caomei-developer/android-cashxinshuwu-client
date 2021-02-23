@@ -18,9 +18,10 @@
                 android:id="@+id/banner_fragment"
                 android:name="com.xinshuwu.banner.CommonBannersFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.xinshuwu.widget.easyrecyclerview.EasyNoRefreshRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,8 +1,12 @@
 package com.xinshuwu.recomend.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -38,7 +42,8 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHold
             desc = books!![position].KEYTYPE
         }
         if (!StringUtil.isEmpty(desc) && !StringUtil.isEmpty(books!![position].CONTENT)) {
-            holder.bookTypeDescribe.text = desc + "\n" + books!![position].CONTENT
+            holder.bookTypeDescribe.text =
+                htmlTxt(holder.itemView.context, desc!!, books!![position].CONTENT)
         } else {
             holder.bookTypeDescribe.text = "暂无"
         }
@@ -63,6 +68,21 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHold
     fun setData(books: List<BOOKS>) {
         this.books = books
         notifyDataSetChanged()
+    }
+
+    private fun htmlTxt(context: Context, desc: String, content: String): Spanned {
+        return fromHtml(
+            String.format(
+                context.getString(R.string.book_type_desc),
+                desc,
+                content
+            )
+        )
+
+    }
+
+    private fun fromHtml(source: String): Spanned {
+        return if (Build.VERSION.SDK_INT >= 24) Html.fromHtml(source, 0) else Html.fromHtml(source)
     }
 
 

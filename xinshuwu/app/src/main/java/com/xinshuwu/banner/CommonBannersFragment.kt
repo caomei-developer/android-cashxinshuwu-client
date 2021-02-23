@@ -57,7 +57,7 @@ class CommonBannersFragment : BaseFragment() {
     }
 
     private fun load() {
-        bannerViewHelper!!.getBanner(object : BannersHelper.CallBack {
+        bannerViewHelper!!.getBannerA(object : BannersHelper.CallBack {
             override fun onSuccess() {
                 onLoaded(false)
             }

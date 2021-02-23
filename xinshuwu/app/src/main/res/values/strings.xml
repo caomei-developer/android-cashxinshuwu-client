@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="book_type_desc"><![CDATA[<font color="#e63528">%1$s</font><br /><br /><font color="#b4b4b4">%2$s</font>]]></string>
 </resources>

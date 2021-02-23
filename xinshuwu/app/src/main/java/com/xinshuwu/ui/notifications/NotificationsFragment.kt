@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.xinshuwu.R
-import com.xinshuwu.base.BaseMvpfragment
+import com.xinshuwu.base.BaseMvpFragment
 import com.xinshuwu.hot.contract.HotContract
 import com.xinshuwu.hot.presenter.HotPresenter
 
-class NotificationsFragment : BaseMvpfragment<HotContract.View, HotPresenter>() {
+class NotificationsFragment : BaseMvpFragment<HotContract.View, HotPresenter>() {
 
 
     override fun onCreateView(

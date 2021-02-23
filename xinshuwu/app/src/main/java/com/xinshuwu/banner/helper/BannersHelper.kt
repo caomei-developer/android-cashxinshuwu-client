@@ -2,6 +2,7 @@ package com.xinshuwu.banner.helper
 
 import android.content.Context
 import android.view.View
+import com.xinshuwu.banner.bean.BannerA
 import com.xinshuwu.banner.bean.BannerInfos
 import com.xinshuwu.net.HttpUtil
 import com.xinshuwu.net.Response
@@ -21,6 +22,7 @@ class BannersHelper {
     private var autoImageSwitcher: AutoImageSwitcher? = null
     private var dotPageIndicator: DotPageIndicator? = null
     private var banners: MutableList<BannerInfos>? = null
+    private var bannersA: List<BannerA>? = null
 
     constructor(
         autoImageSwitcher: AutoImageSwitcher,
@@ -44,7 +46,6 @@ class BannersHelper {
                     val map = HashMap<String, String>()
                     map["index"] = "" + position
                     //TODO 跳转
-                    val bannerRecord = banners!![position]
 
                 }
             }
@@ -91,6 +92,42 @@ class BannersHelper {
             })
 
 
+    }
+
+    fun getBannerA(callback: CallBack) {
+        HttpUtil().apiFzAConstant().bannerA()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<Response<List<BannerA>>> {
+                override fun onSubscribe(@NonNull d: Disposable) {
+
+                }
+
+                override fun onNext(t: Response<List<BannerA>>?) {
+                    if (t != null && t!!.data != null && t!!.data != null) {
+                        val bannerImgUrls = ArrayList<String>()
+                        bannersA = t!!.data
+                        for (element in t.data) {
+                            bannerImgUrls.add(element.pictureUrl)
+                        }
+                        dotPageIndicator!!.setTotal(t!!.data.size)
+                        autoImageSwitcher!!.visibility = View.VISIBLE
+                        autoImageSwitcher!!.setImages(bannerImgUrls)
+                        autoImageSwitcher!!.setPaused(false)
+                    } else {
+                        Utils.showToast(t!!.msg)
+                    }
+                }
+
+                override fun onError(@NonNull e: Throwable) {
+                    Utils.showToast(e.message)
+
+                }
+
+                override fun onComplete() {
+
+                }
+            })
     }
 
     interface CallBack {

@@ -6,7 +6,7 @@ import autodispose2.AutoDispose
 import autodispose2.AutoDisposeConverter
 import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider
 
-open class BaseMvpfragment<V : BaseView, T : BasePresenter<V>> : BaseFragment() {
+open class BaseMvpFragment<V : BaseView, T : BasePresenter<V>> : BaseFragment() {
     protected var mPresenter: T? = null
 
     override fun onDestroyView() {

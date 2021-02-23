@@ -72,6 +72,9 @@ open class RetrofitClient {
             RetrofitClient.apiToUrl.IQ -> {
                 ApiService.BASE_AIQU_URL
             }
+            RetrofitClient.apiToUrl.FZA -> {
+                ApiService.BASR_NEW_AIQU_URL
+            }
         }
 
         if (retrofit == null) {
@@ -85,7 +88,7 @@ open class RetrofitClient {
     }
 
     enum class apiToUrl {
-        QB, FZ, IQ
+        QB, FZ, IQ, FZA
     }
 
 }

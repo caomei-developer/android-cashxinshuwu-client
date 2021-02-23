@@ -12,4 +12,10 @@ class HttpUtil {
             ApiService::class.java
         )
     }
+
+    fun apiFzAConstant(): ApiService {
+        return RetrofitClient().instance()!!.retrofit(RetrofitClient.apiToUrl.FZA)!!.create(
+            ApiService::class.java
+        )
+    }
 }

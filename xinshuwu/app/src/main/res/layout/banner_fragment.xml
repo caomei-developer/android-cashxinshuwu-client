@@ -2,11 +2,10 @@
 <com.xinshuwu.widget.AutoImageSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ml="http://schemas.android.com/apk/res-auto"
     android:id="@+id/image_switcher"
-    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     ml:auto_switch="true"
-    ml:ratios="2.5">
+    ml:ratios="3.0">
 
     <com.xinshuwu.widget.compoment.pager.DotPageIndicator
         android:id="@+id/dotPageIndicator"
