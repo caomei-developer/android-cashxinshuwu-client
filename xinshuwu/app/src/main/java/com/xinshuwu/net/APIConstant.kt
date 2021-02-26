@@ -23,6 +23,7 @@ class APIConstant {
     var FZ_SEARCH_URL = "app/query/keybooks"
 
     var FZ_HOME_URL = "app/home/elitebook"
+    var FZ_BOOK_INDEX_URL = "app/info/bookindex"
 
     var FU_JING_XUAN = "jingxuan"
 

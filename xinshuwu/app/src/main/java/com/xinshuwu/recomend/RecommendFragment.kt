@@ -81,7 +81,6 @@ class RecommendFragment : BaseMvpFragment<RecommendContract.View, RecommendPrese
 
     override fun onSuccess(lmlist: List<LMLIST>) {
         recommendsAdapter!!.setData(list(lmlist))
-
         recycler_view.adapter = recommendsAdapter
     }
 

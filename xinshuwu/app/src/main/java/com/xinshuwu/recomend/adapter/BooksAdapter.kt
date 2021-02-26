@@ -1,6 +1,7 @@
 package com.xinshuwu.recomend.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
@@ -13,12 +14,12 @@ import com.bumptech.glide.request.RequestOptions
 import com.xinshuwu.R
 import com.xinshuwu.base.InfoFlowInterface.LEVEL_TYPE
 import com.xinshuwu.base.InfoFlowInterface.VERTICAL_TYPE
+import com.xinshuwu.detail.BookDetailActivity
 import com.xinshuwu.recomend.bean.RecommendBookInfoFlow
 import com.xinshuwu.widget.easyrecyclerview.adapter.BaseViewHolder
 import com.xinshuwu.widget.easyrecyclerview.adapter.RecyclerArrayAdapter
 
 class BooksAdapter(context: Context) : RecyclerArrayAdapter<RecommendBookInfoFlow>(context) {
-
 
     override fun getViewType(position: Int): Int {
         return getItem(position).picShowType
@@ -34,7 +35,9 @@ class BooksAdapter(context: Context) : RecyclerArrayAdapter<RecommendBookInfoFlo
             }
 
             VERTICAL_TYPE -> {
-                return VerticalBooksViewHolder(parent!!, R.layout.recommend_horizontal_item)
+                return VerticalBooksViewHolder(
+                    parent!!, R.layout.recommend_horizontal_item
+                )
             }
         }
         return null
@@ -69,13 +72,12 @@ class BooksAdapter(context: Context) : RecyclerArrayAdapter<RecommendBookInfoFlo
             Glide.with(itemView.context).load(data!!.bookImage)
                 .apply(options)
                 .into(bookImage)
-        }
 
+        }
     }
 
     class VerticalBooksViewHolder(parent: ViewGroup, @LayoutRes res: Int) :
         BaseViewHolder<RecommendBookInfoFlow>(parent, res) {
-
         private var bookImage: ImageView
         private var bookName: TextView
 
@@ -94,6 +96,13 @@ class BooksAdapter(context: Context) : RecyclerArrayAdapter<RecommendBookInfoFlo
             Glide.with(itemView.context).load(data!!.bookImage)
                 .apply(options)
                 .into(bookImage)
+
+            itemView.setOnClickListener {
+                var intent = Intent(itemView.context, BookDetailActivity().javaClass)
+                intent.putExtra("lm_id", data.lmId)
+                intent.putExtra("b_id", data.getBookId())
+                itemView.context.startActivity(intent)
+            }
         }
     }
 

@@ -21,5 +21,6 @@ data class BOOKS(
     val KEYNAME: String,
     val KEYTYPE: String,
     val SUBJECT: Int,
-    val WORDNUM: Int
+    val WORDNUM: Int,
+    var lmId: String
 )

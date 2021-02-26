@@ -2,6 +2,7 @@ package com.xinshuwu.net;
 
 import com.xinshuwu.banner.bean.BannerA;
 import com.xinshuwu.banner.bean.BannerInfos;
+import com.xinshuwu.detail.bean.BookDetail;
 import com.xinshuwu.hot.bean.Hot;
 import com.xinshuwu.recomend.bean.Recommends;
 
@@ -32,6 +33,10 @@ public interface ApiService {
 
     @GET("app/home/elitebook")
     Observable<Response<Recommends>> recommends(@Query("consumerKey") String paramString1, @Query("timestamp") long paramLong, @Query("sign") String paramString2, @Query("page") String paramString3, @Query("uID") String paramString4, @Query("token") String paramString5, @Query("country") String paramString6, @Query("province") String paramString7, @Query("city") String paramString8, @Query("isWifi") String paramString9, @Query("mType") String paramString10, @Query("PACKINGCHANNEL") String paramString11, @Query("imei") String paramString12, @Query("androidID") String paramString13);
+
+    @GET("app/info/bookindex")
+    Observable<Response<BookDetail>> bookDetail(@Query("consumerKey") String paramString1, @Query("timestamp") long paramLong, @Query("sign") String paramString2, @Query("bID") String paramString3, @Query("lmID") String paramString4, @Query("uID") String paramString5, @Query("token") String paramString6, @Query("imei") String paramString7, @Query("androidID") String paramString8);
+
 
 //    @GET("/app/info/bookindex")
 //    Observable<BookIndexBean> bookindex(@Query("consumerKey") String paramString1, @Query("timestamp") long paramLong, @Query("sign") String paramString2, @Query("bID") String paramString3, @Query("lmID") String paramString4, @Query("uID") String paramString5, @Query("token") String paramString6, @Query("imei") String paramString7, @Query("androidID") String paramString8);

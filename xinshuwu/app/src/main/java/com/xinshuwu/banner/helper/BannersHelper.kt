@@ -1,9 +1,11 @@
 package com.xinshuwu.banner.helper
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import com.xinshuwu.banner.bean.BannerA
 import com.xinshuwu.banner.bean.BannerInfos
+import com.xinshuwu.detail.BookDetailActivity
 import com.xinshuwu.net.HttpUtil
 import com.xinshuwu.net.Response
 import com.xinshuwu.util.Utils
@@ -45,7 +47,8 @@ class BannersHelper {
                 if (callMode % 2 == 1) {
                     val map = HashMap<String, String>()
                     map["index"] = "" + position
-                    //TODO 跳转
+                    var intent = Intent(context, BookDetailActivity().javaClass)
+                    context!!.startActivity(intent)
 
                 }
             }

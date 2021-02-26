@@ -51,6 +51,13 @@ class RecommendBookInfoFlow(books: BOOKS) : AbstractInfoFlow<BOOKS>() {
         return 0
     }
 
+    override fun getLmId(): String {
+        if (materialObj != null) {
+            return materialObj!!.lmId
+        }
+        return ""
+    }
+
     override fun getPicShowType(): Int {
         return if (materialObj != null) {
             if (!StringUtil.isEmpty(materialObj!!.CONTENT)) {
@@ -65,5 +72,12 @@ class RecommendBookInfoFlow(books: BOOKS) : AbstractInfoFlow<BOOKS>() {
 
     override fun getContent(): String {
         return if (materialObj != null) materialObj!!.CONTENT else "暂无"
+    }
+
+    fun getBookId(): Int {
+        if (materialObj != null) {
+            return materialObj!!.KEYID
+        }
+        return 0
     }
 }

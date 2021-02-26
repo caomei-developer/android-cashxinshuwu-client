@@ -22,6 +22,8 @@ public interface InfoFlowInterface {
 
     public String getContent();
 
+    public String getLmId();
+
     public int getBookWordNum();
 
     public String getBookZipUrl();

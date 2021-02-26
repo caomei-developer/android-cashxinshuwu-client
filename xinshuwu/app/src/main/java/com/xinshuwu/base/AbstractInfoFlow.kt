@@ -5,6 +5,11 @@ open class AbstractInfoFlow<T> : InfoFlowInterface {
 
     protected var materialObj: T? = null
 
+
+    override fun getLmId(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getPicShowType(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

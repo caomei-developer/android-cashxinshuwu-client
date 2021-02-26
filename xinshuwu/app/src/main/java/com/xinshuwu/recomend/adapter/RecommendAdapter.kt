@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.xinshuwu.R
-import com.xinshuwu.recomend.bean.BOOKS
+import com.xinshuwu.recomend.bean.RecommendBookInfoFlow
 import com.xinshuwu.util.StringUtil
 
 
 class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHolder>() {
 
-    var books: List<BOOKS>? = null
+    var books: List<RecommendBookInfoFlow>? = null
     var type: Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendViewHolder {
@@ -35,15 +35,15 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHold
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
-        holder.bookName.text = books!![position].KEYNAME
-        holder.bookAuthor.text = books!![position].AUTHORNAME
+        holder.bookName.text = books!![position].bookName
+        holder.bookAuthor.text = books!![position].bookAuthor
         var desc: String? = null
-        if (!StringUtil.isEmpty(books!![position].KEYTYPE)) {
-            desc = books!![position].KEYTYPE
+        if (!StringUtil.isEmpty(books!![position].bookCategory)) {
+            desc = books!![position].bookCategory
         }
-        if (!StringUtil.isEmpty(desc) && !StringUtil.isEmpty(books!![position].CONTENT)) {
+        if (!StringUtil.isEmpty(desc) && !StringUtil.isEmpty(books!![position].content)) {
             holder.bookTypeDescribe.text =
-                htmlTxt(holder.itemView.context, desc!!, books!![position].CONTENT)
+                htmlTxt(holder.itemView.context, desc!!, books!![position].content)
         } else {
             holder.bookTypeDescribe.text = "暂无"
         }
@@ -51,7 +51,7 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHold
         val roundedCorners = RoundedCorners(10)
         val options = RequestOptions.bitmapTransform(roundedCorners)
             .placeholder(ColorDrawable(Color.GRAY))//设置占位图
-        Glide.with(holder.itemView.context).load(books!![position].COVERURL)
+        Glide.with(holder.itemView.context).load(books!![position].bookImage)
             .apply(options)
             .into(holder.bookImage)
     }
@@ -65,7 +65,7 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.RecommendViewHold
     }
 
 
-    fun setData(books: List<BOOKS>) {
+    fun setData(books: List<RecommendBookInfoFlow>) {
         this.books = books
         notifyDataSetChanged()
     }
