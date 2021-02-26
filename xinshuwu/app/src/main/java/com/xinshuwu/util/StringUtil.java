@@ -550,16 +550,13 @@ public class StringUtil {
 
 
     public static String wordConversion(int word) {
-        if (word > 1000) {
+        if (word < 10000 && word > 1000) {
             return String.valueOf(word).substring(0, 1) + "千字";
-        }
-        if (word > 10000) {
+        } else if (word > 10000 && word < 100000) {
             return String.valueOf(word).substring(0, 1) + "万字";
-        }
-        if (word > 100000) {
+        } else if (word > 100000 && word < 1000000) {
             return String.valueOf(word).substring(0, 2) + "万字";
-        }
-        if (word > 1000000) {
+        } else if (word > 1000000) {
             return String.valueOf(word).substring(0, 3) + "万字";
         }
         return "连载中";

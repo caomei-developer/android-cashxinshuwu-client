@@ -1,7 +1,11 @@
 package com.xinshuwu.detail
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.xinshuwu.R
 import com.xinshuwu.base.BaseMvpActivity
 import com.xinshuwu.detail.bean.BookDetail
@@ -37,7 +41,6 @@ class BookDetailActivity : BaseMvpActivity<BookDetailContract.View, BookDetailPr
             APIConstant().FZ_BASE_URL + APIConstant().FZ_BOOK_INDEX_URL
         )
 
-
         mPresenter!!.BookDetaolPresenter(
             time,
             param, bId, lmId, "0", APIConstant().UID
@@ -55,12 +58,17 @@ class BookDetailActivity : BaseMvpActivity<BookDetailContract.View, BookDetailPr
     }
 
     override fun onSuccess(bookDetail: BookDetail) {
-        Glide.with(this).load(bookDetail.COVERURL).into(book_image)
+
+        val roundedCorners = RoundedCorners(10)
+        val options = RequestOptions.bitmapTransform(roundedCorners)
+            .placeholder(ColorDrawable(Color.GRAY))//设置占位图
+        Glide.with(this).load(bookDetail.COVERURL).apply(options)
+            .into(book_image)
+
         book_name.text = bookDetail.BNAME
         book_author.text = bookDetail.ANAME
         book_type_number_word.text =
             bookDetail.BTNAME + " " + StringUtil.wordConversion(bookDetail.WORDNUM)
-
 
     }
 

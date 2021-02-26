@@ -11,40 +11,49 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="4dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/book_image"
-                    android:layout_width="120dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/book_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp" />
+                        android:textColor="@color/ash2"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/book_author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/ash6" />
 
                     <TextView
                         android:id="@+id/book_type_number_word"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/ash6"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/book_catalog"
